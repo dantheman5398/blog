@@ -1,0 +1,67 @@
+How I made this blog and also sleep deprived ramblings
+
+May 5th, 2020 - 4:36 pm
+
+The time is 4:36 pm. I have not slept in 26 hours and I have another 8 to go. Some people are able to do very well with
+little sleep. I am not one of those individuals. I have allowed my sleeping schedule to slip deeper and deeper into the
+night until the point I was lucky to get to bed by 7am. No more shall that be the case. Thus I have been awake since 2pm
+yesterday and up all night. The profound boredom has finally prompted me to write my first proper blog post. I
+figured I would do it on the design choices of this website, as well as the direction I hope to take this site if I ever
+feel ambitious.
+
+Side note: Since the chances of like anyone reading this are hilariously low this blog will function primarily as a
+journal to my future self so I can look back on this time and fondly cringe at it.
+
+The motivation for this website stemmed from seeing that the domain dannenroberts.com was available for $12 and I
+basically worked backwards from there manufacturing a reason to purchase it. Having never hosted a website myself I
+turned to google and stumbled upon AWS Amplify, a service that allows AWS to connect to a remote repo and automatically
+update itself every time a commit occurs. Setting it up was an absolute dream, and I realize I sound like a shill but it
+was a stark reminder for why Amazon is a billion dollar company. Literally just connect it to Github, signup for a free
+1 year subscription, push code, connect domain name, and boom fully functioning HTTPS website ready to go in literally
+ten minutes.
+
+Having worked that out suspiciously easily I turned to actually creating the website. I'm a strong believer in doing the
+minimum amount of work required to get a job done well, as is many a good SWE. As such I decided to only have static
+files with no backend. This seemed like an acceptable decision as the only one posting to the website is me and blog
+posts will be minimal. This actually introduced some unfamiliar constraints as I was used to making larger flask
+projects with full blown multi-threaded servers, dynamic templating, etc etc. My initial thought was to literally have
+no javascript or python at all and to manually add the HTML every time I make a blog post. Of course I am not a
+neanderthal so that was quickly deemed not viable. From there things went down hill quickly....
+
+My next thought was to write every blog post as a JSON file and to have javascript request the JSON files and assemble
+the HTML client side. This is obviously gross for a number of reasons, the two largest ones of course being having to
+write in JSON, and the calls to the server for all the JSON files would create unnecessary overhead. I realize how dumb
+this design was but if we're being honest the mental was already going down hill. Clearly this too was a bad solution.
+
+In a slightly less horrifying attempt I decided to do away with the JSON requests and just decided to use the JSON files
+generate a blog HTML file before every push. Of course my fragile and smooth brain hadn't quite realized that this would
+then no longer require writing and parsing JSON so it took me a good hour to catch that I should drop all notion of
+saving files or using JSON at all.
+
+Blah blah blah, more boring stuff, (I am realizing now how profoundly boring this is so I'm going to move it along)
+
+Finally after bumbling around for a bit I decided on the following solution: Blog posts where each component (title,
+date, paragraphs) are separated by two newline characters. Thus I have a directory of very readable blogs as plain text
+files. Additionally I have python script that will read each blog and convert it to a python dictionary (it can even
+handle images using a special defined image keyword. Checkout the code on the github repo if you're curious). The
+dictionaries are then used to produce a blog page with as many as ten of my most recent posts. I realized I basically
+made a shitty version of templating and parsing. It's a fairly clean solution that requires only one command before
+every push to create my updated blog page and removes all overhead from the end user.
+
+I hope to eventually add in a backend and do something more interesting with this website but until then this is the
+workflow I'm sticking with. I do plan on adding more keywords to make it easier for bolding, quotes, and
+code snippets in blog posts, but that is a future me problem.
+
+That just about wraps up the technical stuff. I honestly have no idea if this blog will stay more on the technical or
+non technical side. Probably the latter, I think I have more to share on that side of things. Also I'm going to try to
+add at the end of every blog a note to my future self for when I nostalgically check this website out years from now.
+
+Note to self: Currently listening to the album Transatlanticism by Death Cab For Cutie a worrying amount. I graduated
+college yesterday. There is a pandemic going on that is really just barely an inconvenience for me as I'm lucky enough to
+not have to work and I mostly play video games and watch youtube videos. The graduation was not at all satisfying and
+left me feeling slightly hollow, kinda like "That's it?". The presidential election between Joe Biden and Donald Trump
+is going on currently, the campaigns are mostly focusing on Corona, it is a very weird and unprecedented election. I
+currently believe Joe Biden has a solid edge in light of the virus decimating the economy and killing over 100k people
+in the U.S.. No matter your politics, it's hard to argue this will not hurt Trump.
+
+That's all for now folks. Stay tuned for hopefully better and less scattered content.

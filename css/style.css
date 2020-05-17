@@ -1,5 +1,3 @@
-@import url(oswald.css);
-
 .jumbotron{
     text-align:center;
     padding-top: 1%;
@@ -25,7 +23,7 @@ hr {
 }
 
 .blog{
-    font-family: 'Oswald';
+    font-size: larger;
 }
 
 li{
